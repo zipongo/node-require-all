@@ -35,10 +35,8 @@ module.exports = function requireAll(options) {
       });
 
     } else {
-      var match = file.match(filter);
-      if (!match) return;
-
-      modules[map(match[1], filepath)] = resolve(require(filepath));
+      if((Array.isArray(filter) && filter.indexOf(file) === -1) || (filter instanceof RegExp && !file.match(filter))) return;
+      modules[map(file, filepath)] = resolve(require(filepath));
     }
   });
 
