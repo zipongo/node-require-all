@@ -35,7 +35,7 @@ module.exports = function requireAll(options) {
       });
 
     } else {
-      if((Array.isArray(filter) && filter.indexOf(file) === -1) || (filter instanceof RegExp && !file.match(filter))) return;
+      if((Array.isArray(filter) && filter.indexOf(file) > -1) || (filter instanceof RegExp && !file.match(filter))) return;
       modules[map(file, filepath)] = resolve(require(filepath));
     }
   });
